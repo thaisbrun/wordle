@@ -1,4 +1,17 @@
-const dictionary = ['earth', 'plane', 'crane', 'audio', 'house'];
+const dictionary = ['ABALE','ABATS','ABAYA','ABBES','ABCES','ABDOS','ABEES','ABERS','ABETI','ABIES','ABIMA',
+'ABIME','ABLES','ABOIE','ABOIS','ABOLI','ABORD','ABOTS','ABOUT','ABOYA','ABOYE','ABRAS','ABRIA','ABRIE','ABRIS',
+'ABUSA','ABUSE','ABUTA','ABUTE','ABYME','ACAIS','ACARE','ACCES', 'ACCON','ACCOT','ACCRO','ACCRU','ACCUL','ACCUS',
+'ACERA', 'ACERE', 'ACHAR', 'ACHAT', 'ACHEB', 'ACHES', 'ACIDE', 'ACIER', 'ACINI', 'ACMES', 'ACNES', 'ACONS', 'ACORE', 
+'ACRAS', 'ACRES', 'ACTAI', 'ACTAS', 'ACTAT', 'ACTEE', 'ACTER', 'ACTES', 'ACTEZ', 'ACTIF', 'ACTUS', 'ACULS', 'ACYLE', 
+'ADACS', 'ADAGE', 'ADAVS', 'ADDAX', 'ADENT', 'ADIEU', 'ADIRE', 'ADJAR', 'ADMET', 'ADMIN', 'ADMIS', 'ADMIT', 'ADNEE', 
+'ADNES', 'ADOBE', 'ADONC', 'ADONS', 'ADORA', 'ADORE', 'ADRAR', 'ADRET', 'ADULA', 'ADULE', 'AEDES', 'AERAI', 'AERAS', 
+'AERAT', 'AEREE', 'AERER', 'AERES','AEREZ', 'AFARE', 'AFARS', 'AFATS', 'AFFIN', 'AFFUT', 'AFROS', 'AFTER', 'AGACA', 
+'AGACE', 'AGADA', 'AGAME', 'AGAMI', 'AGAPE', 'AGATE', 'AGAVE', 'AGEES', 'AGENT', 'AGGLO', 'AGHAS', 'AGIES', 'AGILE', 
+'AGIOS', 'AGIRA', 'AGITA', 'AGITE', 'AGNAT', 'AGNEL', 'AGNIE', 'AGNIS','AGONI', 'AGORA', 'AGREA', 'AGREE', 'AGREG', 
+'AGRES', 'AGUIS', 'AHANA', 'AHANE', 'AHANS', 'AHURI', 'AICHA', 'AICHE', 'AIDAI', 'AIDAS', 'AIDAT', 'AIDEE', 'AIDER', 
+'AIDES', 'AIDEZ', 'AIENT', 'AIEUL', 'AIEUX', 'AIGLE', 'AIGRE', 'AIGRI', 'AIGUE', 'AIGUS', 'AILEE', 'AILES', 'AILLA', 
+'AILLE', 'AIMAI', 'AIMAS', 'AIMAT', 'AIMEE', 'AIMER', 'AIMES', 'AIMEZ', 'AINEE', 'AINES', 'AINOU', 'AINSI', 'AIOLI', 
+'AIRAI', 'AIRAS', 'AIRAT', 'AIRCO', 'AIREE', 'AIRER'];
 const state = {
     secret: dictionary[Math.floor(Math.random() * dictionary.length)],
     grid: Array(6)
@@ -67,25 +80,34 @@ function isWordValid(word){
 }
 function revealWord(guess){
     const row = state.currentRow;
+    const animation_duration = 500;
     for(let i = 0; i <5; i++){
         const box = document.getElementById(`box${row}${i}`);
         const letter = box.textContent;
-        if(letter === state.secret[i]){
+        setTimeout(()=> {
+            if(letter === state.secret[i]){
             box.classList.add('right');
         }else if(state.secret.includes(letter)){
             box.classList.add('wrong');
         }else{
             box.classList.add('empty');
         }
+    },((i + 1) * animation_duration) / 2);
+        
+        box.classList.add('animated');
+        box.style.animationDelay = `${(i * animation_duration) / 2}ms`;
     }
     const isWinner = state.secret === guess;
     const isGameOver = state.currentRow === 5;
-    if(isWinner){
+    setTimeout(()=> {
+        if(isWinner){
         alert('Bravo tu as gagné !');
     }else if(isGameOver){
         alert(`Looser ! Le mot était ${state.secret}`);
     }
+    }, 3* animation_duration);
 }
+
 function isLetter(key){
     return key.length === 1 && key.match(/[a-z]/i);
 }
