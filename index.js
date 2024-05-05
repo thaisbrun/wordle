@@ -11,7 +11,11 @@ const dictionary = ['ABALE','ABATS','ABAYA','ABBES','ABCES','ABDOS','ABEES','ABE
 'AGRES', 'AGUIS', 'AHANA', 'AHANE', 'AHANS', 'AHURI', 'AICHA', 'AICHE', 'AIDAI', 'AIDAS', 'AIDAT', 'AIDEE', 'AIDER', 
 'AIDES', 'AIDEZ', 'AIENT', 'AIEUL', 'AIEUX', 'AIGLE', 'AIGRE', 'AIGRI', 'AIGUE', 'AIGUS', 'AILEE', 'AILES', 'AILLA', 
 'AILLE', 'AIMAI', 'AIMAS', 'AIMAT', 'AIMEE', 'AIMER', 'AIMES', 'AIMEZ', 'AINEE', 'AINES', 'AINOU', 'AINSI', 'AIOLI', 
-'AIRAI', 'AIRAS', 'AIRAT', 'AIRCO', 'AIREE', 'AIRER'];
+'AIRAI', 'AIRAS', 'AIRAT', 'AIRCO', 'AIREE', 'AIRER','AIRES', 'AIREZ', 'AISEE', 'AISES', 'AISYS', 'AJONC', 'AJOUR', 
+'AJOUT', 'AJUTS', 'AKANS', 'AKENE', 'AKITA', 'ALBUM', 'ALDIN', 'ALDOL', 'ALEAS', 'ALEMS', 'ALENE', 'ALEPH', 'ALESA', 
+'ALESE', 'ALEVI', 'ALEZE', 'ALFAS', 'ALGAL', 'ALGIE', 'ALGOL', 'ALGUE', 'ALIAS', 'ALIBI', 'ALIEN', 'ALIOS', 'ALISE', 
+'ALITA', 'ALITE', 'ALIZE', 'ALLAI', 'ALLAS', 'ALLAT', 'ALLEE', 'ALLER', 'ALLES', 'ALLEU', 'ALLEZ', 'ALLIA', 'ALLIE', 
+'ALLOC', 'ALMEE', 'ALOCO', 'ALOES'];
 const state = {
     secret: dictionary[Math.floor(Math.random() * dictionary.length)],
     grid: Array(6)
