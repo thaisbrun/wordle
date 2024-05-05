@@ -1,4 +1,6 @@
+const dictionary = ['earth', 'plane', 'crane', 'audio', 'house'];
 const state = {
+    secret: dictionary[Math.floor(Math.random() * dictionary.length)],
     grid: Array(6)
     .fill()
     .map(() => Array(5).fill('')),
@@ -57,7 +59,46 @@ function registerKeyboardEvents(){
         updateGrid();
     };
 }
-
+function getCurrentWord(){
+    return state.grid[state.currentRow].reduce((prev,curr) => prev + curr);
+}
+function isWordValid(word){
+    return dictionary.includes(word);
+}
+function revealWord(guess){
+    const row = state.currentRow;
+    for(let i = 0; i <5; i++){
+        const box = document.getElementById(`box${row}${i}`);
+        const letter = box.textContent;
+        if(letter === state.secret[i]){
+            box.classList.add('right');
+        }else if(state.secret.includes(letter)){
+            box.classList.add('wrong');
+        }else{
+            box.classList.add('empty');
+        }
+    }
+    const isWinner = state.secret === guess;
+    const isGameOver = state.currentRow === 5;
+    if(isWinner){
+        alert('Bravo tu as gagné !');
+    }else if(isGameOver){
+        alert(`Looser ! Le mot était ${state.secret}`);
+    }
+}
+function isLetter(key){
+    return key.length === 1 && key.match(/[a-z]/i);
+}
+function addLetter(letter){
+    if(state.currentCol === 5) return;
+    state.grid[state.currentRow][state.currentCol] = letter;
+    state.currentCol++;
+}
+function removeLetter(){
+    if(state.currentCol === 0) return;
+    state.grid[state.currentRow][state.currentCol - 1] = '';
+    state.currentCol--;
+}
 function startup(){
     const game = document.getElementById('game');
     drawGrid(game);
